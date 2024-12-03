@@ -72,7 +72,7 @@ func visitImportSpecNode(config *Config, node *ast.ImportSpec, pass *analysis.Pa
 			message = fmt.Sprintf("import %q imported without alias but must be with alias %q according to config", path, required)
 		}
 
-		pass.Report(analysis.Diagnostic{
+		diag := analysis.Diagnostic{
 			Pos:     node.Pos(),
 			End:     node.End(),
 			Message: message,
@@ -80,7 +80,9 @@ func visitImportSpecNode(config *Config, node *ast.ImportSpec, pass *analysis.Pa
 				Message:   "Use correct alias",
 				TextEdits: findEdits(node, pass.TypesInfo.Uses, path, alias, required),
 			}},
-		})
+		}
+		fmt.Printf("Diagnostic: %+v\n", diag)
+		pass.Report(diag)
 	} else if !exists && config.DisallowExtraAliases {
 		pass.Report(analysis.Diagnostic{
 			Pos:     node.Pos(),
