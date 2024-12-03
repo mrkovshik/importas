@@ -11,3 +11,5 @@ require (
 	golang.org/x/mod v0.20.0 // indirect
 	golang.org/x/sync v0.8.0 // indirect
 )
+
+replace github.com/julz/importas => github.com/mrkovshik/importas v0.0.0-20241016092914-b26b8fc96f8a
