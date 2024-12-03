@@ -1,4 +1,4 @@
-module github.com/julz/importas/testdata/src/h
+module github.com/mrkovshik/importas/testdata/src/h
 
 go 1.20
 

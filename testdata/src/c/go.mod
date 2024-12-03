@@ -1,4 +1,4 @@
-module github.com/julz/importas/testdata/src/c
+module github.com/mrkovshik/importas/testdata/src/c
 
 go 1.15
 
