@@ -1,4 +1,4 @@
-module github.com/julz/importas
+module github.com/mrkovshik/importas
 
 go 1.20
 
