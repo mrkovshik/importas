@@ -67,9 +67,9 @@ func visitImportSpecNode(config *Config, node *ast.ImportSpec, pass *analysis.Pa
 	}
 
 	if required, exists := config.AliasFor(path); exists && required != alias {
-		message := fmt.Sprintf("import %q imported as %q but must be %q according to config", path, alias, required)
+		message := fmt.Sprintf("import %q imported as %q, but must be %q according to config", path, alias, required)
 		if alias == "" {
-			message = fmt.Sprintf("import %q imported without alias but must be with alias %q according to config", path, required)
+			message = fmt.Sprintf("import %q imported without alias, but must be with alias %q according to config", path, required)
 		}
 
 		diag := analysis.Diagnostic{
@@ -87,7 +87,7 @@ func visitImportSpecNode(config *Config, node *ast.ImportSpec, pass *analysis.Pa
 		pass.Report(analysis.Diagnostic{
 			Pos:     node.Pos(),
 			End:     node.End(),
-			Message: fmt.Sprintf("import %q has alias %q which is not part of config", path, alias),
+			Message: fmt.Sprintf("import %q has alias %q, which is not part of config", path, alias),
 			SuggestedFixes: []analysis.SuggestedFix{{
 				Message:   "remove alias",
 				TextEdits: findEdits(node, pass.TypesInfo.Uses, path, alias, ""),
